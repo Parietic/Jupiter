@@ -3,25 +3,27 @@ const { BrowserWindow } = require("electron");
 
 module.exports = () => {
 	// Create the browser window.
-	_appWindow = new BrowserWindow({
+	APP_WINDOW = new BrowserWindow({
 		width: 1280,
 		height: 720,
 		show: false,
 		autoHideMenuBar: true,
 		webPreferences: {
+			nodeIntegration: false,
 			contextIsolation: true,
-			//preload: "./preload.js",
+			enableRemoteModule: false,
+			preload: path.join(__dirname, "../preload.js"),
 		},
 	});
 
 	// Only show window when it has finished loading
-	_appWindow.once("ready-to-show", () => {
-		_appWindow.show();
+	APP_WINDOW.once("ready-to-show", () => {
+		APP_WINDOW.show();
 	});
 
 	// Load the index.html of the app.
-	_appWindow.loadFile(path.join(__dirname, "../../render/index.html"));
+	APP_WINDOW.loadFile(path.join(__dirname, "../../render/index.html"));
 
 	// Open the DevTools.
-	//_appWindow.webContents.openDevTools();
+	//APP_WINDOW.webContents.openDevTools();
 };
