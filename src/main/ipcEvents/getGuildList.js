@@ -3,6 +3,7 @@ module.exports = {
 	handler: true,
 	execute: async () => {
 		const guilds = await CLIENT.guilds.fetch();
+
 		const guildList = {};
 
 		guilds.forEach((guild) => {
