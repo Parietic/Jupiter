@@ -25,5 +25,14 @@ module.exports = () => {
 	});
 
 	// Load the index.html of the app.
-	APP_WINDOW.loadFile(path.join(__dirname, "../../render/index.html"));
+	if (CLIENT.isReady()) {
+		APP_WINDOW.loadFile(path.join(__dirname, "../../render/index.html"));
+	} else {
+		// If the bot has not logged in yet wait before loading HTML
+		CLIENT.once("ready", () => {
+			APP_WINDOW.loadFile(
+				path.join(__dirname, "../../render/index.html")
+			);
+		});
+	}
 };
