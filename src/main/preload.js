@@ -4,6 +4,8 @@ const CLIENT_API = {
 	getGuildList: async () => ipcRenderer.invoke("getGuildList"),
 	getGuildChannelList: async (guildId) =>
 		ipcRenderer.invoke("getGuildChannelList", guildId),
+	joinVoiceChannel: async (channelId) =>
+		ipcRenderer.invoke("joinVoiceChannel", channelId),
 };
 
 contextBridge.exposeInMainWorld("clientApi", CLIENT_API);

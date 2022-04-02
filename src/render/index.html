@@ -2,16 +2,23 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Jupiter</title>
 		<meta
 			name="description"
 			content="Jupiter is a Discord bot for steaming music and providing utility to a DM while they host a D&D session."
 		/>
-		<link rel="stylesheet" type="text/css" href="./style.css" />
-		<script src="./petite-vue.iife.js" defer init></script>
 	</head>
 	<body>
-		<section id="channels"></section>
+		<section id="sidebar">
+			<form>
+				<select name="guildSelect" id="guildSelect">
+					<option value="" disabled selected>Select a guild</option>
+				</select>
+			</form>
+			<section id="channelScroll"></section>
+		</section>
 		<section id="player">
 			<section id="queue"></section>
 			<section id="selection"></section>

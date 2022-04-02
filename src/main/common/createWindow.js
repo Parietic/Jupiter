@@ -19,11 +19,11 @@ module.exports = () => {
 	// Only show window when it has finished loading
 	APP_WINDOW.once("ready-to-show", () => {
 		APP_WINDOW.show();
+
+		// Open the DevTools.
+		APP_WINDOW.webContents.openDevTools();
 	});
 
 	// Load the index.html of the app.
 	APP_WINDOW.loadFile(path.join(__dirname, "../../render/index.html"));
-
-	// Open the DevTools.
-	//APP_WINDOW.webContents.openDevTools();
 };
