@@ -1,17 +1,27 @@
 let guildList = {};
-let guildChannelList = {};
+let guildChannelList = [];
+let currentGuild;
 
 //////////////
 //  Events  //
 //////////////
 
 const onChannelUpdate = (_event, channel) => {
+	if (currentGuild != channel.guildId) {
+		// Channel is not from the current selected guild
+		return;
+	}
 	const button = document.getElementById(channel.id);
+
 	if (!button) {
+		// Create new button if one does not exist for the channel
 		const channelScroll = document.getElementById("channelScroll");
 		buildButton(channelScroll, channel);
 	} else {
+		// Refresh button name incase channel name was changed
 		button.text = channel.name;
+
+		// Enable/disable button based on join-ability and if the bot is connected or not
 		if (!channel.joinable || channel.connected) {
 			button.disabled = true;
 		} else {
@@ -85,11 +95,11 @@ const initSidebar = async () => {
 		guildSelect.addEventListener("change", (event) => {
 			// Since the user can change guilds after initial selection,
 			// We remove any existing channels from the last event signal
-			const channelScroll = document.getElementById("channelScroll");
-			while (channelScroll.firstChild) {
-				channelScroll.removeChild(channelScroll.firstChild);
+			while (event.target.firstChild) {
+				event.target.removeChild(event.target.firstChild);
 			}
 
+			currentGuild = event.target.value;
 			loadChannels(event.target.value);
 		});
 	} else if (numGuilds == 1) {
@@ -100,6 +110,7 @@ const initSidebar = async () => {
 		placeholder.value = Object.keys(guildList)[0];
 		placeholder.text = guildList[placeholder.value].name;
 
+		currentGuild = placeholder.value;
 		loadChannels(placeholder.value);
 	} else {
 		// Bot not in any guilds, or an error occurred

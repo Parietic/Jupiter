@@ -18,6 +18,7 @@ module.exports = {
 					connected: channel.members.has(CLIENT.user.id),
 					parentId: channel.parentId,
 					parentName: channel.parent.name,
+					guildId: channel.guildId,
 				});
 			}
 		});

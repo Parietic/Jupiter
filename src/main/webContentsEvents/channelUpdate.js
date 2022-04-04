@@ -8,6 +8,7 @@ module.exports = {
 			joinable: channel.joinable,
 			parentId: channel.parentId,
 			parentName: channel.parent.name,
+			guildId: channel.guildId,
 		});
 	},
 };
