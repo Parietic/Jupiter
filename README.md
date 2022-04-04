@@ -1,3 +1,7 @@
+<!-- markdownlint-disable MD041 -->
+<div id="top"></div>
+<!-- markdownlint-enable MD041 -->
+
 # Jupiter <!-- omit in toc -->
 
 Jupiter is a Discord music and utility bot for hosting D&D sessions.
@@ -61,7 +65,7 @@ All vanilla JavaScript, HTML and CSS with:
   - Electron forge - Template and building
 - Discord.js - Discord API wrapper
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started
 
@@ -114,7 +118,7 @@ To package and make a standalone executable for your platform:
 yarn make
 ```
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Road Map
 
@@ -140,7 +144,7 @@ Road map until first official release:
 - [ ] Style UI/HTML
 - [ ] (Optional) add basic discord slash commands
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
@@ -148,7 +152,7 @@ Road map until first official release:
 
 \**stub*\*
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
 
@@ -156,7 +160,7 @@ Road map until first official release:
 
 \**stub*\*
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Acknowledgments
 
@@ -164,4 +168,4 @@ Road map until first official release:
 
 \**stub*\*
 
-<p align="right">(<a href="#jupiter">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p>
