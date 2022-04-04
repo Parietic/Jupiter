@@ -10,6 +10,6 @@ module.exports = {
 			return;
 		}
 
-		channelUpdate(channel);
+		channelUpdate(newChannel);
 	},
 };
