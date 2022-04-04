@@ -5,7 +5,6 @@ const createWindow = require("../common/createWindow");
 
 module.exports = {
 	name: "activate",
-	once: false,
 	execute: () => {
 		if (BrowserWindow.getAllWindows().length === 0) {
 			createWindow();

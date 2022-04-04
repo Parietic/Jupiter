@@ -1,11 +1,38 @@
+const fs = require("fs");
+const path = require("path");
 const { ipcRenderer, contextBridge } = require("electron");
 
-const CLIENT_API = {
-	getGuildList: async () => ipcRenderer.invoke("getGuildList"),
-	getGuildChannelList: async (guildId) =>
-		ipcRenderer.invoke("getGuildChannelList", guildId),
-	joinVoiceChannel: async (channelId) =>
-		ipcRenderer.invoke("joinVoiceChannel", channelId),
-};
+const API = {};
 
-contextBridge.exposeInMainWorld("clientApi", CLIENT_API);
+// Expose IPC events
+let eventFiles = fs
+	.readdirSync(path.join(__dirname, "./ipcEvents/"))
+	.filter((file) => file.endsWith(".js"));
+
+for (const file of eventFiles) {
+	const event = require("./ipcEvents/" + file);
+	if (event.handler) {
+		API[event.name] = async (...args) =>
+			ipcRenderer.invoke(event.name, ...args);
+	} else {
+		API[event.name] = (...args) => ipcRenderer.send(event.name, ...args);
+	}
+}
+
+// Init webContents event handles
+eventFiles = fs
+	.readdirSync(path.join(__dirname, "./webContentsEvents/"))
+	.filter((file) => file.endsWith(".js"));
+
+for (const file of eventFiles) {
+	const event = require("./webContentsEvents/" + file);
+	if (event.once) {
+		API["once_" + event.name] = (callback) =>
+			ipcRenderer.once(event.name, callback);
+	} else {
+		API["on_" + event.name] = (callback) =>
+			ipcRenderer.on(event.name, callback);
+	}
+}
+
+contextBridge.exposeInMainWorld("api", API);

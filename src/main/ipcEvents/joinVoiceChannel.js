@@ -2,16 +2,16 @@ const { joinVoiceChannel } = require("@discordjs/voice");
 
 module.exports = {
 	name: "joinVoiceChannel",
-	handler: true,
-	execute: async (event, channelId) => {
-		const channel = await CLIENT.channels.fetch(channelId);
-
-		joinVoiceChannel({
-			channelId: channel.id,
-			guildId: channel.guild.id,
-			adapterCreator: channel.guild.voiceAdapterCreator,
+	execute: (_event, channelId) => {
+		CLIENT.channels.fetch(channelId).then((channel) => {
+			// Make sure channel is joinable, then request to join the channel
+			if (channel.joinable) {
+				joinVoiceChannel({
+					channelId: channel.id,
+					guildId: channel.guild.id,
+					adapterCreator: channel.guild.voiceAdapterCreator,
+				});
+			}
 		});
-
-		return Promise.resolve();
 	},
 };

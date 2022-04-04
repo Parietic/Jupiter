@@ -25,7 +25,10 @@ global.CLIENT = undefined;
 ///////////////
 
 // Initialize new client
-CLIENT = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const intents = new Intents();
+intents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES);
+
+CLIENT = new Client({ intents });
 
 // Event handler
 initEventHandler(CLIENT, "../clientEvents/");

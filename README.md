@@ -126,11 +126,11 @@ yarn make
 
 To-do list before first official release candidate
 
-- [ ] Custom event handler
+- [x] Custom event handler
   - [x] Discord events
   - [x] Electron app events
   - [x] ipcMain events
-  - [ ] webContents events
+  - [x] webContents events
   - [ ] (Optional) Slash command events
 - [ ] Get Youtube video URL
   - [ ] Fetch from youtube API for searches

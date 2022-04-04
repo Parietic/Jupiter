@@ -1,36 +1,60 @@
 let guildList = {};
 let guildChannelList = {};
 
+//////////////
+//  Events  //
+//////////////
+
+const onChannelUpdate = (_event, channel) => {
+	const button = document.getElementById(channel.id);
+	if (!button) {
+		const channelScroll = document.getElementById("channelScroll");
+		buildButton(channelScroll, channel);
+	} else {
+		button.text = channel.name;
+		if (!channel.joinable || channel.connected) {
+			button.disabled = true;
+		} else {
+			button.disabled = false;
+		}
+	}
+};
+
 ///////////////
 //  Sidebar  //
 ///////////////
 
+const buildButton = (channelScroll, channel) => {
+	const button = document.createElement("button");
+
+	button.id = channel.id;
+	button.textContent = channel.name;
+
+	if (!channel.joinable || channel.connected) {
+		button.disabled = true;
+	}
+
+	// When button is pressed request bot to join the channel that the button represents
+	button.addEventListener("click", (event) =>
+		window.api.joinVoiceChannel(event.target.id)
+	);
+
+	channelScroll.append(button);
+};
+
+//////////////////////
+//  Initialization  //
+//////////////////////
+
 // For each channel in a selected guild,
 // Populate #channelScroll with a button
 const loadChannels = async (guildId) => {
-	guildChannelList = await window.clientApi.getGuildChannelList(guildId);
+	guildChannelList = await window.api.getGuildChannelList(guildId);
 
 	const channelScroll = document.getElementById("channelScroll");
 
-	for (const id in guildChannelList) {
-		const button = document.createElement("button");
-
-		button.id = id;
-		button.textContent = guildChannelList[id].name;
-
-		button.addEventListener("click", (event) =>
-			window.clientApi.joinVoiceChannel(event.target.id).then(() => {
-				const children = event.target.parentNode.childNodes;
-
-				for (const child of children) {
-					child.disabled = false;
-				}
-
-				event.target.disabled = true;
-			})
-		);
-
-		channelScroll.append(button);
+	for (const channel of guildChannelList) {
+		buildButton(channelScroll, channel);
 	}
 
 	return Promise.resolve();
@@ -38,7 +62,7 @@ const loadChannels = async (guildId) => {
 
 // Populate #guildSelect with a option for each guild the bot is in
 const initSidebar = async () => {
-	guildList = await window.clientApi.getGuildList();
+	guildList = await window.api.getGuildList();
 
 	const numGuilds = Object.keys(guildList).length;
 
@@ -82,9 +106,14 @@ const initSidebar = async () => {
 		// In either case we change the select element to let the user know the bot has not been invited to any guilds
 		guildSelect.disabled = true;
 
-		placeholder.textContent = "Please invite bot guild";
+		placeholder.textContent = "Please invite bot to a guild";
 	}
 
 	return Promise.resolve();
 };
 initSidebar();
+
+const initEvents = () => {
+	window.api.on_channelUpdate(onChannelUpdate);
+};
+initEvents();

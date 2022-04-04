@@ -5,7 +5,6 @@ const { app } = require("electron");
 
 module.exports = {
 	name: "window-all-closed",
-	once: false,
 	execute: () => {
 		if (process.platform !== "darwin") {
 			app.quit();
