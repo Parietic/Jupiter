@@ -31,7 +31,7 @@ Locally hosted with a GUI rather than slash commands. intended to be used by sma
 
 ---
 
-\**put screenshot/gif of application here*\*
+\***put screenshot/gif of application here**\*
 
 Their are hundreds of music bots out in the wild, nearly all hosted remotely. So why should you care about this one? Well realistically you shouldn't, this is a project for personal use, but if someone else can get some use from it all the better.
 
@@ -150,7 +150,7 @@ Road map until first official release:
 
 ---
 
-\**stub*\*
+\***stub**\*
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -158,7 +158,7 @@ Road map until first official release:
 
 ---
 
-\**stub*\*
+\***stub**\*
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -166,6 +166,6 @@ Road map until first official release:
 
 ---
 
-\**stub*\*
+\***stub**\*
 
 <p align="right">(<a href="#top">back to top</a>)</p>
