@@ -124,7 +124,7 @@ yarn make
 
 ---
 
-Road map until first official release:
+To-do list before first official release candidate
 
 - [ ] Custom event handler
   - [x] Discord events
@@ -141,6 +141,13 @@ Road map until first official release:
   - [ ] Write to filesystem
   - [ ] Read from filesystem
 - [ ] Create audio stream from youtube URL
+- [ ] Stream audio though Discord bot
+  - [x] Join voice channel
+  - [ ] Stream audio
+  - [ ] Pause/play audio
+  - [ ] Skip to track
+  - [ ] (Optional) Scrub though track
+  - [ ] (Optional) Volume control
 - [ ] Style UI/HTML
 - [ ] (Optional) add basic discord slash commands
 
