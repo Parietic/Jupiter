@@ -1,0 +1,24 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file and trim white spaces
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Set default charset
+# My personal preference, please keep tabs as tab with a width of 4 when making a commit
+[*.js]
+charset = utf-8
+indent_style = tab
+tab_width = 4
+
+# Keeps indents standardized
+[*.{.json,.md}]
+indent_style = space
+indent_size = 2

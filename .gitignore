@@ -1,3 +1,9 @@
+# Discord bot token, DO NOT COMMIT
+*/token.json
+
+# .vscode workspace stuff
+.vscode/settings.json
+
 # Logs
 logs
 *.log
@@ -87,6 +93,3 @@ typings/
 
 # Electron-Forge
 out/
-
-# Project
-*/token.json
